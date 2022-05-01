@@ -39,6 +39,6 @@ def test_Userを論理削除_正常系():
     
     # 想定結果： 1. IDが一致する
     assert user.id == deleted_user.id
-    
+
     # 想定結果： 2. 削除フラグが立っている
     assert deleted_user.is_deleted
