@@ -1,5 +1,10 @@
 from dataclasses import dataclass
 from typing import ClassVar
+import re
+
+from sqlalchemy import false, true
+
+@dataclass(frozen=True)
 class Email():
     """ユーザのメールアドレスを保持する
 
@@ -7,22 +12,25 @@ class Email():
         _type_: Email
     """    
     _value: str
-    
+    __REGEX_PATTERN: ClassVar[str] = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
+    __EMPTY_ERROR: ClassVar[str] = "メールアドレスを入力してください。"
+    __TYPE_ERROR: ClassVar[str] = "メールアドレスを正しく入力してください。"
+    __INVALID_VALUE_ERROR: ClassVar[str] = "メールアドレスが不正な形式です。"
     
     def __init__(self, value: str) -> None:
         """インスタンス初期化
 
         Args:
             value (str): メールアドレスの値
-        """        
-        # 空文字またはNoneを許容しない
+        """       
         if not value:
-            raise ValueError("メールアドレスを入力してください。")
+            raise ValueError(self.__EMPTY_ERROR)
         
-        # 文字列型以外を許容しない
         if not isinstance(value, str):
-            raise ValueError("メールアドレスを正しく入力してください。")
+            raise ValueError(self.__TYPE_ERROR)
         
+        if not re.fullmatch(self.__REGEX_PATTERN, value):
+            raise ValueError(self.__INVALID_VALUE_ERROR)
         
         object.__setattr__(self, "_value" , value)
         
@@ -35,3 +43,17 @@ class Email():
             str: メールアドレスの値
         """        
         return self._value
+    
+    def is_valid_pattern(self, value: str) -> bool:
+        """不正な形式をチェック
+
+        Args:
+            value (str): 入力値
+
+        Returns:
+            bool: 形式が不正か
+        """        
+        if re.fullmatch(self.__REGEX_PATTERN, value):
+            return true
+        else:
+            return false
