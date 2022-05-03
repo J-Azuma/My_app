@@ -12,7 +12,8 @@ class Email():
         _type_: Email
     """    
     _value: str
-    __REGEX_PATTERN: ClassVar[str] = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
+    # とりあえずHTMLのinput type=email の入力規則に合わせます。
+    __REGEX_PATTERN: ClassVar[str] = "^[a-zA-Z0-9.!#$%&'*+ \\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
     __EMPTY_ERROR: ClassVar[str] = "メールアドレスを入力してください。"
     __TYPE_ERROR: ClassVar[str] = "メールアドレスを正しく入力してください。"
     __INVALID_VALUE_ERROR: ClassVar[str] = "メールアドレスが不正な形式です。"
