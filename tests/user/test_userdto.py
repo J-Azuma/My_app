@@ -1,3 +1,4 @@
+from logging import debug
 from ulid import ULID
 from tests.util.factory import create_user
 from app.user.user import User
@@ -9,10 +10,9 @@ def test_初期化したUserエンティティからDTOに変換():
     
     # 操作： DTOに変換
     userdto: UserDto = UserDto.from_entity(user)
-    
     # 想定結果： 正常に変換されている
     assert isinstance(userdto, UserDto)
-    
+
     assert user.id.value == userdto.id
     assert user.email.value == userdto.email
     assert user.is_active == userdto.is_active
