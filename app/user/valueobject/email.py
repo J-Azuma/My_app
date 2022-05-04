@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from typing import ClassVar
 import re
 
-from sqlalchemy import false, true
 
 @dataclass(frozen=True)
 class Email():
@@ -55,6 +54,6 @@ class Email():
             bool: 形式が不正か
         """        
         if re.fullmatch(self.__REGEX_PATTERN, value):
-            return true
+            return True
         else:
-            return false
+            return False

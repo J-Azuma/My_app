@@ -17,6 +17,7 @@ class UserFactory():
         Returns:
             User: Userインスタンス
         """        
-        userid: UserId = UserId(str(ULID))
+        id = str(ULID())
+        userid: UserId = UserId(id)
         user: User = User(userid, emai)
         return user
