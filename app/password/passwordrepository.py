@@ -25,4 +25,4 @@ class PasswordRepository(IpassWordRepository):
         """     
         passworddto: PasswordDto = PasswordDto.from_entity(password)
         hashed_passworddto: PasswordDto = ConvertPassword.hash(passworddto)
-        self.add(hashed_passworddto)
+        self.session.add(hashed_passworddto)
