@@ -1,8 +1,11 @@
+from typing import Union
 from app.password.Ipasswordrepository import IpassWordRepository
 from app.configration.database.initdb import session
 from app.password.password import Password
 from app.password.passworddto import PasswordDto
 from app.password.convertpassword import ConvertPassword
+from app.user.userdto import UserDto
+from app.user.valueobject.userid import UserId
 
 class PasswordRepository(IpassWordRepository):
     """パスワード集約のリポジトリ実装クラス
@@ -26,3 +29,23 @@ class PasswordRepository(IpassWordRepository):
         passworddto: PasswordDto = PasswordDto.from_entity(password)
         hashed_passworddto: PasswordDto = ConvertPassword.hash(passworddto)
         self.session.add(hashed_passworddto)
+    
+    def find_by_user_id(self, id: UserId) -> Union[Password, None]:
+        """ユーザIDでパスワードを検索
+
+        Args:
+            id (UserId): ユーザID
+
+        Returns:
+            Union[Password, None]: パスワードエンティティ / None
+        """        
+        id_str: str = id.value
+        passworddto: PasswordDto = self.session.query(PasswordDto).filter(PasswordDto.user_id == id_str).one_or_none()
+        
+        if passworddto is None:
+            return passworddto
+        
+        password: Password = passworddto.to_entity()
+        return password
+        
+        
