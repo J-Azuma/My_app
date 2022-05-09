@@ -1,6 +1,7 @@
 from typing import Union
 from app.password.Ipasswordrepository import IpassWordRepository
 from app.configration.database.initdb import session
+from app.password.hashedpassword import HashedPassword
 from app.password.password import Password
 from app.password.passworddto import PasswordDto
 from app.password.convertpassword import ConvertPassword
@@ -30,7 +31,7 @@ class PasswordRepository(IpassWordRepository):
         hashed_passworddto: PasswordDto = ConvertPassword.hash(passworddto)
         self.session.add(hashed_passworddto)
     
-    def find_by_user_id(self, id: UserId) -> Union[Password, None]:
+    def find_by_user_id(self, id: UserId) -> Union[HashedPassword, None]:
         """ユーザIDでパスワードを検索
 
         Args:
@@ -45,7 +46,7 @@ class PasswordRepository(IpassWordRepository):
         if passworddto is None:
             return passworddto
         
-        password: Password = passworddto.to_entity()
-        return password
+        hashed_password: HashedPassword = passworddto.to_hashed_entity()
+        return hashed_password
         
         

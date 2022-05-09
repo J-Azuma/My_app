@@ -1,4 +1,5 @@
 from typing import Union
+from app.password.hashedpassword import HashedPassword
 from app.password.password import Password
 from app.user.user import User
 from app.user.userfactory import UserFactory 
@@ -22,6 +23,7 @@ def test_パスワードエンティティ追加処理():
     passwordrepository.session.commit()
     
     # 想定結果： パスワードが追加されている
-    added_password: Union[Password, None] = passwordrepository.find_by_user_id(user.id)
-    assert isinstance(added_password , Password)
+    added_password: Union[HashedPassword, None] = passwordrepository.find_by_user_id(user.id)
+    assert isinstance(added_password , HashedPassword)
+    assert added_password.check("Hogehoge_12")
     
