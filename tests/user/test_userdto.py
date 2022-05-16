@@ -1,7 +1,7 @@
 from logging import debug
 from ulid import ULID
 from tests.util.factory import create_user
-from app.user.user import User
+from app.user.domain.user import User
 from app.user.userdto import UserDto
 
 def test_初期化したUserエンティティからDTOに変換():

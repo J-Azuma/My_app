@@ -1,7 +1,7 @@
 from ulid import ULID
 from app.user.valueobject.email import Email
 from app.user.valueobject.userid import UserId
-from app.user.user import User
+from app.user.domain.user import User
 
 class UserFactory():
     

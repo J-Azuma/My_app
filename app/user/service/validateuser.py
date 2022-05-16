@@ -1,7 +1,7 @@
 from injector import inject
 from typing import Final, Union
-from app.user.Iuserrepository import IuserRepository
-from app.user.user import User
+from app.user.domain.Iuserrepository import IuserRepository
+from app.user.domain.user import User
 from app.user.valueobject.email import Email
 
 class ValidateUser():

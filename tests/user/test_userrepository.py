@@ -1,6 +1,6 @@
 from audioop import add
-from app.user.user import User
-from app.user.Iuserrepository import IuserRepository
+from app.user.domain.user import User
+from app.user.domain.Iuserrepository import IuserRepository
 from app.user.userrepository import UserRepository
 from tests.util.factory import create_user
 

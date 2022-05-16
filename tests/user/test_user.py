@@ -1,4 +1,4 @@
-from app.user.user import User
+from app.user.domain.user import User
 from tests.util.factory import create_user
 
 def test_Userインスタンス生成_正常系():

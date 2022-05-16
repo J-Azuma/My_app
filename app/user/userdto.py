@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, String
 from app.configration.database.initdb import Base
-from app.user.user import User
+from app.user.domain.user import User
 from app.user.valueobject.userid import UserId
 from app.user.valueobject.email import  Email
 

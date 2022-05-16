@@ -1,8 +1,8 @@
 from unittest import mock
 import pytest
-from app.user.Iuserrepository import IuserRepository
+from app.user.domain.Iuserrepository import IuserRepository
 from app.user.service.validateuser import ValidateUser
-from app.user.user import User
+from app.user.domain.user import User
 from app.user.valueobject.email import Email
 from tests.util.factory import create_email, create_user
 

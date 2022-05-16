@@ -3,10 +3,10 @@ from typing import Final
 from sqlalchemy.exc import SQLAlchemyError
 from app.password.password import Password
 from app.user.service.validateuser import ValidateUser
-from app.user.user import User 
-from app.user.userfactory import UserFactory
+from app.user.domain.user import User 
+from app.user.domain.userfactory import UserFactory
 from app.user.valueobject.email import Email
-from app.user.Iuserrepository import IuserRepository
+from app.user.domain.Iuserrepository import IuserRepository
 from app.password.Ipasswordrepository import IpassWordRepository
 from app.configration.database.initdb import db_session
 
@@ -45,6 +45,7 @@ class CreateUser():
         password: Password = Password(user.id, param["password"])
         
         # 整合性担保のためにトランザクションを張る
+        # リポジトリの属性とdb_session変数はセッションを共有しているので一旦この書き方にする
         try:
             self.iuserrepository.add(user)
             db_session.flush()
