@@ -1,14 +1,8 @@
 from unittest import mock
-from click import BadArgumentUsage
 import pytest
 from sqlalchemy.exc import SQLAlchemyError
 from app.configration.dependency import Dependency
-from app.password.Ipasswordrepository import IpassWordRepository
-from app.user.Iuserrepository import IuserRepository
-from app.user.service.validateuser import ValidateUser
 from app.user.usecase.createuser import CreateUser
-from app.user.user import User
-from app.password.password import Password
 
 def test_DIコンテナ経由でインスタンス生成_正常系():
     # 事前準備： なし
@@ -66,6 +60,7 @@ def test_メールアドレスが重複している場合例外発生(mocker):
         createuser.create_user(param_dict)
         
     assert str(e.value) == "メールアドレスが重複しています。"
+
 
 def test_User登録後トランザクション内でDBエラー発生(mocker):
     # 事前準備1： モック生成

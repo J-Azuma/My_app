@@ -1,7 +1,7 @@
 from app.password.password import Password
 from app.password.passworddto import PasswordDto
-from app.user.user import User
-from app.user.userfactory import UserFactory
+from app.user.domain.user import User
+from app.user.domain.userfactory import UserFactory
 from app.user.valueobject.email import Email
 
 def test_PasswordエンティティからDTOに変換():

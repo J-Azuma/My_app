@@ -1,6 +1,6 @@
 from typing import Union
 from abc import ABCMeta, abstractmethod
-from app.user.user import User
+from app.user.domain.user import User
 from app.user.valueobject.email import Email
 
 class IuserRepository(metaclass=ABCMeta):

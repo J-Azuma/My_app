@@ -1,7 +1,7 @@
 from typing import Union
-from app.user.Iuserrepository import IuserRepository
+from app.user.domain.Iuserrepository import IuserRepository
 from app.configration.database.initdb import session
-from app.user.user import User
+from app.user.domain.user import User
 from app.user.valueobject.email import Email
 from app.user.userdto import UserDto
 

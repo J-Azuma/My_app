@@ -1,7 +1,7 @@
 from typing import Final
 
 from injector import Injector
-from app.user.Iuserrepository import IuserRepository
+from app.user.domain.Iuserrepository import IuserRepository
 from app.user.userrepository import UserRepository
 from app.password.Ipasswordrepository import IpassWordRepository
 from app.password.passwordrepository import PasswordRepository

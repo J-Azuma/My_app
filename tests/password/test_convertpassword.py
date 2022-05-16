@@ -1,5 +1,5 @@
 from werkzeug.security import check_password_hash
-from app.user.user import User
+from app.user.domain.user import User
 from app.password.password import Password
 from tests.util.factory import create_user
 from app.password.passworddto import PasswordDto
