@@ -1,10 +1,10 @@
 from sqlalchemy import Boolean, Column, String
-from app.configration.database.initdb import Base
+from app.configration.database.initdb import db
 from app.user.domain.user import User
 from app.user.valueobject.userid import UserId
 from app.user.valueobject.email import  Email
 
-class UserDto(Base):
+class UserDto(db.Model):
     """Userエンティティの変換先
 
     Args:
@@ -15,10 +15,10 @@ class UserDto(Base):
     """    
     __tablename__: str = "users"
     __table_args__ = {'extend_existing': True}
-    id = Column(String, primary_key=True)
-    email = Column(String, nullable=False, unique=True)
-    is_active = Column(Boolean, nullable=False, default=False)
-    is_deleted = Column(Boolean, nullable=False, default=False)
+    id = db.Column(String, primary_key=True)
+    email = db.Column(String, nullable=False, unique=True)
+    is_active = db.Column(Boolean, nullable=False, default=False)
+    is_deleted = db.Column(Boolean, nullable=False, default=False)
     
     
     def to_entity(self) -> User:

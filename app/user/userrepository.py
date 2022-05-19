@@ -1,6 +1,6 @@
 from typing import Union
 from app.user.domain.Iuserrepository import IuserRepository
-from app.configration.database.initdb import session
+from app.configration.database.initdb import db
 from app.user.domain.user import User
 from app.user.valueobject.email import Email
 from app.user.userdto import UserDto
@@ -8,7 +8,7 @@ from app.user.userdto import UserDto
 class UserRepository(IuserRepository):
     
     def __init__(self) -> None:
-        self.session = session
+        self.session = db.session
     
     def add(self, user: User) -> None:
         """ユーザ追加

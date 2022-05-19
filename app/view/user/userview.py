@@ -33,7 +33,8 @@ class UserView():
         try:
             createuser.create_user(param)
         except ValueError as e:
-            abort(BAD_REQUEST)
+            print("AAAA")
+            abort(500)
         except :
             pass
         else:

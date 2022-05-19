@@ -1,6 +1,6 @@
 from typing import Union
 from app.password.Ipasswordrepository import IpassWordRepository
-from app.configration.database.initdb import session
+from app.configration.database.initdb import db
 from app.password.hashedpassword import HashedPassword
 from app.password.password import Password
 from app.password.passworddto import PasswordDto
@@ -17,7 +17,7 @@ class PasswordRepository(IpassWordRepository):
     def __init__(self) -> None:
         """インスタンス初期化
         """        
-        self.session = session
+        self.session = db.session
         
     # パスワードのハッシュ化はインフラ層のConvertPasswordクラスの責務とする
     # ※ ハッシュ化はドメイン知識の範疇からは外れるため
