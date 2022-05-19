@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import os
 
 # DB接続設定
-engine = create_engine(str(os.getenv("SQLALCHEMY_DATABASE_URI")), echo = True)
+engine = create_engine(str(os.getenv("SQLALCHEMY_DATABASE_URI")), echo=True)
 
 # session設定
 session_maker = sessionmaker(autocommit=False,
