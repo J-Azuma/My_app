@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from flask import (Flask)
-from app.view.user.userview import UserView
+from app.presentation.user.userview import UserView
 from app.configration.database.initdb import init_db
 
 def create_app():

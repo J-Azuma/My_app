@@ -1,10 +1,10 @@
 from http.client import BAD_REQUEST, OK
 from flask import (request, abort, jsonify, Blueprint)
 from cerberus import Validator
-from app.view.shared.japaneseerrorhandler import JapaneseErrorHandler
+from app.presentation.shared.japaneseerrorhandler import JapaneseErrorHandler
 from app.configration.dependency import Dependency
 from app.user.usecase.createuser import CreateUser
-from app.view.user.rule.create_rule import schema
+from app.presentation.user.rule.create_rule import schema
 
 class UserView():
     
@@ -33,12 +33,9 @@ class UserView():
         try:
             createuser.create_user(param)
         except ValueError as e:
-            print("AAAA")
-            abort(500)
-        except :
-            pass
-        else:
-            return jsonify({
-                'code' : OK,
-                'message' : 'ユーザを仮登録しました。'
-            }), 200
+            abort(BAD_REQUEST)
+        
+        return jsonify({
+            'code' : OK,
+            'message' : 'ユーザを仮登録しました。'
+        }), 200
