@@ -1,11 +1,11 @@
 from re import I
 from sqlalchemy import Column, ForeignKey, String
-from app.configration.database.initdb import Base
+from app.configration.database.initdb import db
 from app.password.password import Password
 from app.password.hashedpassword import HashedPassword
 from app.user.valueobject.userid import UserId
 
-class PasswordDto(Base):
+class PasswordDto(db.Model):
     """ドメインオブジェクトとリポジトリ間でデータを変換するクラス
 
     Args:
@@ -15,8 +15,8 @@ class PasswordDto(Base):
         _type_: 
     """    
     __tablename__ = "passwords"
-    user_id = Column(String, ForeignKey('users.id' , ondelete='CASCADE'), primary_key=True, unique=True)
-    value = Column(String, nullable=False)
+    user_id = db.Column(String, ForeignKey('users.id' , ondelete='CASCADE'), primary_key=True, unique=True)
+    value = db.Column(String, nullable=False)
     
     
     ## Passwordクラスのエンティティを再構成使用とすると

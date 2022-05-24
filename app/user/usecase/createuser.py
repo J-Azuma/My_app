@@ -8,7 +8,7 @@ from app.user.domain.userfactory import UserFactory
 from app.user.valueobject.email import Email
 from app.user.domain.Iuserrepository import IuserRepository
 from app.password.Ipasswordrepository import IpassWordRepository
-from app.configration.database.initdb import db_session
+from app.configration.database.initdb import db
 
 class CreateUser():
     
@@ -48,9 +48,9 @@ class CreateUser():
         # リポジトリの属性とdb_session変数はセッションを共有しているので一旦この書き方にする
         try:
             self.iuserrepository.add(user)
-            db_session.flush()
+            db.session.flush()
             self.ipasswordrepository.add(password)
-            db_session.commit()
+            db.session.commit()
         except SQLAlchemyError as e:
-            db_session.rollback()
+            db.session.rollback()
             raise SQLAlchemyError("ユーザ登録中にエラーが発生しました。")
