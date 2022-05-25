@@ -22,5 +22,5 @@ class BadRequestException(Exception):
         """        
         return jsonify({
             'code' : BAD_REQUEST,
-            'message': e.description
+            'message': str(e.description)
         }), BAD_REQUEST

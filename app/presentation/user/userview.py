@@ -33,10 +33,9 @@ class UserView():
         try:
             createuser.create_user(param)
         except ValueError as e:
-            print(e)
             abort(BAD_REQUEST, description=e)
         
         return jsonify({
             'code' : OK,
             'message' : 'ユーザを仮登録しました。'
-        }), 200
+        }), OK
