@@ -33,7 +33,8 @@ class UserView():
         try:
             createuser.create_user(param)
         except ValueError as e:
-            abort(BAD_REQUEST)
+            print(e)
+            abort(BAD_REQUEST, description=e)
         
         return jsonify({
             'code' : OK,
